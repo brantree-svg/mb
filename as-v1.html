@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TBH GLOBAL A/S 와이어프레임 v5 — POP 마인드브릿지 기준</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  :root{--ink:#15140f;--mut:#8a8780;--line:#ece9e3;--ph:#eeebe5;--cream:#f7f5f1;--pht:#b6b2a8;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  body{font-family:"Pretendard",sans-serif;color:var(--ink);background:#fff;font-size:14px;line-height:1.5;letter-spacing:-0.01em;}
+  .tabs{position:sticky;top:0;z-index:9;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:2px;padding:0 28px;height:54px;overflow-x:auto;}
+  .tabs .brand{font-weight:700;letter-spacing:0.08em;margin-right:22px;font-size:12px;white-space:nowrap;color:var(--mut);}
+  .tabs button{border:0;background:none;font-family:inherit;font-size:12.5px;color:var(--mut);padding:16px 12px;cursor:pointer;white-space:nowrap;letter-spacing:0.02em;border-bottom:1px solid transparent;margin-bottom:-1px;}
+  .tabs button.on{color:var(--ink);font-weight:600;border-bottom-color:var(--ink);}
+  .tabs .util{margin-left:auto;border:1px solid var(--line)!important;border-radius:20px;padding:7px 14px;font-size:11.5px;color:var(--mut);margin-bottom:0;}
+  .tabs .util.on{color:var(--ink);border-color:var(--ink)!important;}
+  main{max-width:1060px;margin:0 auto;padding:0 30px 120px;}
+  main.split{max-width:1440px;}
+  .head{padding:34px 0 6px;display:flex;align-items:baseline;gap:14px;}
+  .head h1{font-size:20px;font-weight:600;letter-spacing:-0.025em;}
+  .head .url{font-size:12px;color:var(--pht);margin-left:auto;}
+  .lede{font-size:12.5px;color:var(--mut);line-height:1.7;padding:0 0 18px;border-bottom:1px solid var(--line);}
+  .gnb{display:flex;align-items:center;gap:18px;padding:16px 0;border-bottom:1px solid var(--line);}
+  .gnb .lg{font-weight:700;letter-spacing:0.08em;font-size:12px;color:var(--mut);}
+  .gnb .mn{display:flex;gap:14px;font-size:11px;color:var(--pht);letter-spacing:0.03em;flex-wrap:wrap;}
+  .gnb .ut{margin-left:auto;font-size:11px;color:var(--pht);letter-spacing:0.05em;}
+  section{padding:28px 0;border-bottom:1px solid var(--line);}
+  .sl{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;}
+  .sl .i{font-size:11px;color:var(--pht);font-weight:600;min-width:20px;}
+  .sl .t{font-size:14px;font-weight:600;letter-spacing:-0.02em;}
+  .sl .n{margin-left:auto;font-size:11px;color:var(--pht);letter-spacing:0.02em;}
+  .sl .n.mod{color:var(--ink);}
+  .iml{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;color:var(--pht);letter-spacing:0.02em;line-height:1.3;}
+  .iml .ico{display:inline-flex;}
+  .iml .ico svg{display:block;}
+  .g{display:grid;gap:10px;}
+  .g4{grid-template-columns:repeat(4,1fr);}
+  .tile{background:var(--ph);border-radius:16px;display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:11.5px;text-align:center;padding:10px;}
+  .card .im{background:var(--ph);border-radius:16px;display:flex;align-items:center;justify-content:center;}
+  .card .c{padding:9px 2px 0;font-size:11px;color:var(--pht);}
+  .card .c b{display:block;color:var(--ink);font-weight:500;font-size:12px;margin-bottom:2px;letter-spacing:-0.01em;}
+  .hero{position:relative;border-radius:16px;background:var(--cream);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px;}
+  .hero .svc{font-size:11px;color:var(--pht);letter-spacing:0.14em;margin-bottom:14px;}
+  .hero .cap{font-size:26px;font-weight:600;letter-spacing:-0.035em;line-height:1.35;}
+  .hero .sub{font-size:12.5px;color:var(--mut);line-height:1.8;margin-top:12px;}
+  .hero .btns{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap;justify-content:center;}
+  .hero .btns div{font-size:12px;padding:11px 28px;border-radius:12px;border:1px solid var(--line);color:var(--mut);}
+  .hero .btns .p{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .hero .imgn{position:absolute;top:14px;left:16px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{font-size:11.5px;color:var(--mut);border:1px solid var(--line);padding:8px 14px;letter-spacing:0.02em;border-radius:20px;background:#fff;}
+  .flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .flow .st{flex:1;min-width:80px;background:var(--ph);border-radius:14px;padding:15px 6px;text-align:center;font-size:11.5px;color:var(--mut);}
+  .flow .st small{color:var(--pht);}
+  .flow .ar{color:var(--pht);font-size:11px;}
+  .note{margin-top:12px;padding:13px 15px;border-radius:14px;font-size:11.5px;line-height:1.8;background:var(--cream);border:1px solid var(--line);color:var(--mut);}
+  .note b{color:var(--ink);font-weight:500;}
+  .gap{margin-top:0;padding:26px 18px;border-radius:16px;font-size:11.5px;line-height:1.8;border:1px dashed var(--pht);color:var(--pht);text-align:center;}
+  .devnote{display:none;margin:0 0 12px;padding:9px 13px;background:var(--cream);border:1px solid var(--line);border-left:2px solid var(--mut);border-radius:8px;font-size:11.5px;color:var(--mut);line-height:1.6;}
+  .devnote b{color:var(--ink);font-weight:500;}
+  .dtag{display:inline-block;font-size:9px;font-weight:600;letter-spacing:0.06em;color:var(--pht);margin-right:8px;}
+  body.showdev .devnote{display:block;}
+  .foot{padding:26px 0;font-size:10.5px;color:var(--pht);letter-spacing:0.03em;}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start;}
+  .cmp .col{min-width:0;}
+  .colhd{position:sticky;top:54px;z-index:5;background:#fff;padding:16px 0 11px;border-bottom:1px solid var(--ink);margin-bottom:2px;}
+  .colhd .lb{font-size:13px;font-weight:600;letter-spacing:-0.02em;}
+  .colhd .ds{font-size:11px;color:var(--pht);margin-top:3px;}
+  .cmp section{padding:20px 0;}
+  .cmp .hero{padding:32px 16px;}
+  .cmp .hero .cap{font-size:19px;}
+  .cmp .flow .st{min-width:52px;font-size:10px;padding:10px 3px;}
+  .cmp .g4{grid-template-columns:repeat(2,1fr);}
+  .popwrap{display:flex;justify-content:center;padding:4px 0 0;}
+  .pop{width:100%;max-width:430px;aspect-ratio:210/297;background:#fff;border:1px solid var(--line);border-radius:4px;padding:38px 34px 30px;display:flex;flex-direction:column;text-align:center;}
+  .pop .brow{display:flex;justify-content:center;padding-bottom:16px;border-bottom:1px solid var(--ink);}
+  .pop .brow .mb{font-size:12px;letter-spacing:0.22em;font-weight:600;color:var(--ink);}
+  .pop .svc{font-size:9.5px;letter-spacing:0.16em;color:var(--mut);margin-top:30px;}
+  .pop .cap{font-size:26px;font-weight:600;letter-spacing:-0.035em;line-height:1.4;margin-top:16px;}
+  .pop .sub{font-size:11.5px;color:var(--mut);line-height:1.9;margin-top:16px;}
+  .pop .ln{width:26px;height:1px;background:var(--pht);margin:26px auto;}
+  .pop .lst{font-size:10.5px;color:var(--mut);line-height:2.1;text-align:left;max-width:250px;margin:0 auto;}
+  .pop .qrbox{margin-top:auto;padding-top:24px;}
+  .pop .qrbox img{width:92px;height:92px;display:block;margin:0 auto 9px;}
+  .pop .qrbox .u{font-size:10px;color:var(--mut);letter-spacing:0.02em;}
+  .pop .lg{margin-top:18px;padding-top:13px;border-top:1px solid var(--line);}
+  .pop .lg .sv{font-size:8.5px;letter-spacing:0.14em;color:var(--pht);}
+  .mt{display:flex;align-items:baseline;gap:8px;font-size:10.5px;color:var(--pht);padding:9px 0;border-bottom:1px dotted var(--line);}
+  .mt b{color:var(--ink);font-weight:500;min-width:60px;}
+  .mtbox{margin-top:14px;}
+  @media(max-width:900px){.cmp{grid-template-columns:1fr;}.colhd{position:static;}}
+  @media(max-width:760px){
+    main{padding:0 18px 80px;}
+    .g4{grid-template-columns:repeat(2,1fr);}
+    .hero .cap{font-size:20px;}
+    .flow .st{min-width:58px;font-size:10.5px;padding:11px 4px;}
+  }
+</style>
+</head>
+<body>
+<nav class="tabs" id="tabs"><span class="brand">TBH SHOP</span></nav>
+<main id="app"></main>
+
+<script>
+const TABS = ["NOW","NEW","CMP","POP"];
+const LABEL = {NOW:"현행", NEW:"개선안", CMP:"나란히 비교", POP:"웹 · POP 비교"};
+const QR = "data:image/png;base64,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";
+
+const ICO_IMG = '<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L4 20"></path></svg>';
+const ICO_VID = '<svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>';
+function imlTag(t){var v=/영상|비디오|video|루프|모션/i.test(t);var ic = v ? '<span class="ico">'+ICO_VID+'</span>' : '<span class="ico">'+ICO_IMG+'</span>';return '<span class="iml">'+ic+'<span>'+t+'</span></span>';}
+
+const cards = (cols,items,h,imgl="")=>`<div class="g g${cols}">${items.map(([a,b])=>`<div class="card"><div class="im" style="height:${h}px">${imgl?imlTag(imgl):""}</div><div class="c"><b>${a}</b>${b||""}</div></div>`).join("")}</div>`;
+const chips = items=>`<div class="chips">${items.map(t=>`<span class="chip">${t}</span>`).join("")}</div>`;
+
+function sec(i,t,tag,inner){
+  const cls = (tag==="변경"||tag==="신규"||tag==="보강") ? "mod" : "";
+  return `<section><div class="sl"><span class="i">${i}</span><span class="t">${t}</span><span class="n ${cls}">${tag}</span></div>${inner}</section>`;
+}
+
+function gnb(){
+  return `<div class="gnb"><span class="lg">TBH SHOP</span><div class="mn"><span>리그</span><span>마인드브릿지</span><span>쥬시쥬디</span><span>베이직하우스</span><span>아쿠아스큐텀</span><span>아울렛</span></div><span class="ut">검색 · 마이 · 장바구니</span></div>`;
+}
+
+const BRANDS = ["티비에이치샵","rrig","마인드브릿지 맨","마인드브릿지 우먼","쥬시쥬디","베이직하우스","아쿠아스큐텀","아울렛"];
+const BENEFITS = ["스마트한 수선 관리","든든한 평생 케어","신규회원 웰컴쿠폰","등급별 멤버십 혜택","생일축하 쿠폰","APP 다운로드 혜택","리뷰 마일리지","카카오톡 친구 혜택"];
+
+const flowHTML = `<div class="flow">
+  <div class="st">수선 신청<br><small>온라인 접수</small></div><span class="ar">›</span>
+  <div class="st">상품 수거<br><small>방문 수거</small></div><span class="ar">›</span>
+  <div class="st">상품 확인<br><small>가능 여부</small></div><span class="ar">›</span>
+  <div class="st">결제<br><small>유상 시</small></div><span class="ar">›</span>
+  <div class="st">수선 진행<br><small>전문가 작업</small></div><span class="ar">›</span>
+  <div class="st">수선 완료<br><small>배송</small></div>
+</div>`;
+
+const benefitsHTML = `<div class="g g4">${BENEFITS.map(b=>`<div class="tile" style="height:96px">${b}</div>`).join("")}</div>`;
+const foot = `<div class="foot">푸터 · TBH SHOP 공통 — 회사소개 · 약관 · 개인정보 · 고객센터 1666-7963 · 매장찾기</div>`;
+
+const S = {};
+
+S.now1 = sec("1","메인 비주얼","현행",
+  `<div class="hero">
+    <div class="svc">TBH GLOBAL A/S SERVICE</div>
+    <div class="cap">A/S 수선 서비스</div>
+    <div class="sub">소중한 옷, 처음처럼 정성껏 복원해드립니다</div>
+    <div class="btns"><div class="p">신규 접수하기</div><div>수선 조회하기</div></div>
+  </div>`);
+
+S.new1 = sec("1","메인 비주얼","변경",
+  `<div class="hero">
+    <span class="imgn">${imlTag("배경 이미지 (선택)")}</span>
+    <div class="svc">TBH GLOBAL CARE FOREVER</div>
+    <div class="cap">첫 만남의 설렘, 오래도록.</div>
+    <div class="sub">봉제·지퍼·단추까지, 온라인으로 간편하게 접수하세요<br>회원 · 비회원 모두 신청 가능합니다</div>
+    <div class="btns"><div class="p">신규 접수하기</div><div>수선 조회하기</div></div>
+  </div>`);
+
+S.brand = tag => sec("2","수선 가능 브랜드", tag, chips(BRANDS)+
+  `<div class="note">최근 5년 이내 생산된 TBH GLOBAL 브랜드 상품</div>`);
+
+S.now3 = sec("3","수선 절차 안내","현행", flowHTML+
+  `<div class="note">결제 단계는 수선 가능 여부 확인 후 수선 비용 안내 시 진행됩니다. 수선 불가 판정 시 무상 반송됩니다.</div>`);
+
+S.new3 = sec("3","수선 절차 안내","보강", flowHTML+
+  `<div class="note"><b>추가</b> 봉제·지퍼·단추·니트 올나감 등 대부분 항목은 무상입니다. 원단 판갈이·안감·가방 등 일부 항목은 검수 후 비용을 안내드립니다.<br>결제 단계는 수선 가능 여부 확인 후 진행됩니다. 수선 불가 판정 시 무상 반송됩니다.</div>`);
+
+S.nowGap = sec("4","—","해당 없음",
+  `<div class="gap">현행 페이지에 없는 영역<br>고객이 수선 가능 여부를 접수 전에 판단할 근거 없음</div>`);
+
+S.new4 = sec("4","이렇게 복원해드렸습니다","신규",
+  cards(4,[["지퍼 교체","단종 부자재 대체"],["봉제 터짐","솔기 재봉"],["단추 이탈","동일 부자재 교체"],["니트 올나감","올 복원"]],180,"복원 전 / 후 비교컷")+
+  `<div class="note">이미지 4컷 + 캡션 고정 구조 · 콘텐츠 교체만으로 상시 운영</div>`);
+
+S.benefit = tag => sec("5","회원 혜택", tag, benefitsHTML);
+
+const P = {
+  NOW:{url:"/as", lede:"현재 운영 중인 A/S 페이지. 섹션 4개.", body: S.now1 + S.brand("현행") + S.now3 + S.benefit("현행") + foot},
+  NEW:{url:"/as", lede:"기존 구조·순서 유지. 1번 문구 교체, 3번 안내 보강, 4번 블록 추가.", body: S.new1 + S.brand("유지") + S.new3 + S.new4 + S.benefit("유지") + foot}
+};
+
+const ANN = {
+  NOW:[
+    "<b>메인 비주얼</b> · 정적 텍스트 + CTA 2개",
+    "<b>브랜드 목록</b> · 로고 칩 리스트 · 브랜드 마스터 연동",
+    "<b>절차 안내</b> · 6스텝 정적 + 하단 주석 1줄",
+    "<b>회원 혜택</b> · 8칸 아이콘 그리드 · 회원 정책 연동"
+  ],
+  NEW:[
+    "<b>메인 비주얼</b> · 기존 블록 그대로, 카피만 교체 — 개발 작업 없음",
+    "<b>브랜드 목록</b> · 변경 없음",
+    "<b>절차 안내</b> · 하단 주석 텍스트만 추가 · 약관 문구와 동기화 필요",
+    "<b>복원 사례</b> · 4컷 카드 그리드 · 이미지 4장 + 캡션, 클릭 이벤트 없음",
+    "<b>회원 혜택</b> · 변경 없음, 위치 유지"
+  ]
+};
+
+
+const POPCARD = () => `<div class="popwrap"><div class="pop">
+  <div class="brow"><span class="mb">MIND BRIDGE</span></div>
+  <div class="svc">TBH GLOBAL CARE FOREVER</div>
+  <div class="cap">첫 만남의 설렘,<br>오래도록.</div>
+  <div class="sub">봉제·지퍼·단추까지<br>온라인으로 간편하게 접수하세요</div>
+  <div class="ln"></div>
+  <div class="lst">
+    온라인 접수 후 택배기사가 방문 수거합니다<br>
+    대부분 항목은 무상, 일부 항목은 검수 후 안내<br>
+    수선이 어려운 경우 무상으로 반송해 드립니다<br>
+    회원 · 비회원 모두 신청 가능합니다
+  </div>
+  <div class="qrbox"><img src="${QR}" alt="QR"><div class="u">tbhshop.co.kr/as</div></div>
+  <div class="lg"><span class="sv">TBH GLOBAL A/S SERVICE</span></div>
+</div></div>`;
+
+const MATCH = [
+  ["서비스명","TBH GLOBAL CARE FOREVER","동일"],
+  ["헤드카피","첫 만남의 설렘, 오래도록.","동일 · POP는 2줄 분리"],
+  ["서브카피","봉제·지퍼·단추까지 온라인으로 간편하게 접수","동일"],
+  ["조건 안내","무상 · 유상 · 무상 반송 · 회원/비회원","웹은 절차 하단, POP는 본문 하단"],
+  ["문체","명사형 · 해요체 혼용 없음","동일"],
+  ["진입 경로","웹 CTA 버튼 / POP QR","tbhshop.co.kr/as 동일"],
+  ["브랜드 표기","웹은 TBH SHOP 통합 / POP는 MIND BRIDGE 단독","서비스 주체는 TBH GLOBAL 공통"]
+];
+const matchHTML = () => `<div class="mtbox">${MATCH.map(([a,b,c])=>`<div class="mt"><b>${a}</b><span style="flex:1">${b}</span><span>${c}</span></div>`).join("")}</div>`;
+
+const app = document.getElementById("app");
+const tabs = document.getElementById("tabs");
+
+TABS.forEach(k=>{
+  const b=document.createElement("button");
+  b.textContent=LABEL[k]; b.onclick=()=>show(k); b.dataset.k=k;
+  tabs.appendChild(b);
+});
+const dev=document.createElement("button");
+dev.className="util"; dev.textContent="설명보기";
+dev.onclick=()=>{document.body.classList.toggle("showdev");dev.classList.toggle("on");};
+tabs.appendChild(dev);
+
+function applyDevNotes(k){
+  const a=ANN[k]; if(!a) return;
+  app.querySelectorAll("section").forEach((sx,i)=>{
+    if(!a[i]) return;
+    const sl=sx.querySelector(".sl");
+    const html='<div class="devnote"><span class="dtag">DEV</span>'+a[i]+'</div>';
+    if(sl) sl.insertAdjacentHTML("afterend",html); else sx.insertAdjacentHTML("afterbegin",html);
+  });
+}
+
+function show(k){
+  tabs.querySelectorAll("button[data-k]").forEach(b=>b.classList.toggle("on",b.dataset.k===k));
+  app.className = k==="CMP" ? "split" : "";
+
+  if(k==="CMP"){
+    app.innerHTML =
+      `<div class="head"><h1>현행 · 개선안 비교</h1><span class="url">/as</span></div>
+       <div class="lede">좌측 현행, 우측 개선안. 섹션 번호가 서로 대응합니다.</div>
+       <div class="cmp">
+         <div class="col"><div class="colhd"><div class="lb">현행</div><div class="ds">섹션 4개</div></div>
+           ${S.now1}${S.brand("현행")}${S.now3}${S.nowGap}${S.benefit("현행")}
+         </div>
+         <div class="col"><div class="colhd"><div class="lb">개선안</div><div class="ds">섹션 5개 · 변경 2 · 신규 1</div></div>
+           ${S.new1}${S.brand("유지")}${S.new3}${S.new4}${S.benefit("유지")}
+         </div>
+       </div>`;
+    window.scrollTo({top:0});
+    return;
+  }
+
+  if(k==="POP"){
+    app.innerHTML =
+      `<div class="head"><h1>웹 · POP 비교</h1><span class="url">/as · A4 스탠드</span></div>
+       <div class="lede">좌측 웹 개선안 1번 영역, 우측 마인드브릿지 매장 POP. 문구와 문체를 동일하게 맞춥니다.</div>
+       <div class="cmp">
+         <div class="col"><div class="colhd"><div class="lb">웹 · 개선안</div><div class="ds">tbhshop.co.kr/as</div></div>
+           ${S.new1}
+           <section><div class="sl"><span class="i">3</span><span class="t">조건 안내</span><span class="n">보강</span></div>
+           <div class="note">봉제·지퍼·단추·니트 올나감 등 대부분 항목은 무상입니다. 원단 판갈이·안감·가방 등 일부 항목은 검수 후 비용을 안내드립니다.<br>수선 불가 판정 시 무상 반송됩니다.</div></section>
+         </div>
+         <div class="col"><div class="colhd"><div class="lb">매장 POP</div><div class="ds">A4 세로 · 스탠드 1면 · 마인드브릿지</div></div>
+           ${POPCARD()}
+         </div>
+       </div>
+       <section style="border-bottom:0"><div class="sl"><span class="i">—</span><span class="t">문구 매칭 표</span></div>${matchHTML()}</section>`;
+    window.scrollTo({top:0});
+    return;
+  }
+
+  const p=P[k];
+  app.innerHTML=`<div class="head"><h1>${LABEL[k]}</h1><span class="url">${p.url}</span></div><div class="lede">${p.lede}</div>${gnb()}${p.body}`;
+  applyDevNotes(k);
+  window.scrollTo({top:0});
+}
+
+show("CMP");
+</script>
+</body>
+</html>
