@@ -196,8 +196,8 @@ const P = {};
 /* 템플릿 T1 — 홈 */
 P.HOME = {url:"/",lede:"비주얼 중심 메인. 팀 의견 반영: 브랜드 소개 카피 + STORIES 링크 블록 추가.",
   body:
-  sec("1","메인 비주얼","M1 VISUAL", hero(560,"26 S/S — 직장인의 하루를 설계하는 브랜드","당신을 위해 · 26 S/S","키비주얼 (시즌 캠페인 영상)"))+
-  sec("2","브랜드 무드 · 소개","M1 VISUAL + TXT", stmt("“직장인의 하루를 설계하는 브랜드”")+`<p class="lead">마인드브릿지는 일과 삶의 경계를 자연스럽게 연결하는 Workation Lifestyle을 바탕으로, 여성과 남성을 위한 컬렉션과 다양한 라이프스타일 콘텐츠를 선보입니다.</p><div style="text-align:center;margin:18px 0 0"><span class="chip a">MIND BRIDGE 알아보기</span></div><div class="g g2" style="margin-top:14px">${ph(440,imlTag("브랜드 무드 비주얼 ①"))}${ph(440,imlTag("브랜드 무드 비주얼 ②"))}</div>`)+
+  sec("1","메인 비주얼","M1 VISUAL", hero(560,"27 S/S — 일과 일상 사이, 나의 하루","27 S/S 컬렉션","키비주얼 (시즌 캠페인 영상)"))+
+  sec("2","브랜드 무드 · 소개","M1 VISUAL + TXT", stmt("“직장인의 하루를 설계하는 브랜드”")+`<p class="lead">마인드브릿지는 일과 삶의 경계를 부드럽게 잇는 워케이션 라이프스타일을 바탕으로, 하루에 자연스럽게 스며드는 컬렉션과 콘텐츠를 선보입니다.</p><div style="text-align:center;margin:18px 0 0"><span class="chip a">MIND BRIDGE 알아보기</span></div><div class="g g2" style="margin-top:14px">${ph(440,imlTag("브랜드 무드 비주얼 ①"))}${ph(440,imlTag("브랜드 무드 비주얼 ②"))}</div>`)+
   sec("3","상품 큐레이션","M5 CURATION (커스텀)", `<div class="pcwrap">${[0,1,2,3].map(i=>`<div class="pc${i===0?' show':""}"><div class="bars"><i></i><i></i><i></i><i></i></div><div class="badge">@인플루언서</div><div class="frames"><div class="fr show">${imlTag('착용 영상 (루프)')}</div><div class="fr">${imlTag('착용컷 ②')}</div><div class="fr">${imlTag('착용컷 ③')}</div><div class="fr">${imlTag('착용컷 ④')}</div></div><div class="navz l"></div><div class="navz r"></div><div class="meta"><b>상품명</b><span>₩ 00,000</span></div><div class="qs"><div class="hlabel">사이즈 · 바로 담기</div><div class="opt"><span>S</span><span>M</span><span>L</span><span>XL</span></div><div class="btns"><div>장바구니</div><div class="p">바로구매</div></div></div></div>`).join("")}</div>`)+
   sec("4","TODAY'S EDIT","M1 VISUAL", hero(480,"TODAY'S EDIT — 오늘은 어떤 하루인가요?","TODAY'S EDIT 보기 →","룩북 이미지 (대표 룩)"))+
   sec("5","MIND BRIDGE STORIES","M2 CARD(콘텐츠형)", cards(4,[["컬렉션","시즌 화보 · 룩북"],["매거진","브랜드 콘텐츠"],["스타일링","TODAY'S EDIT 가이드"],["매장","오프라인 안내 ↗"]],220,"콘텐츠 이미지"))+
@@ -207,8 +207,8 @@ P.HOME = {url:"/",lede:"비주얼 중심 메인. 팀 의견 반영: 브랜드 �
 /* 템플릿 T-TE — 콘텐츠 허브 (TODAY'S EDIT, 정적) */
 P.WORKDAY = {url:"/todays-edit",lede:"브랜드 컨셉 허브 TODAY'S EDIT — 하루의 순간별 제안(WORK · OFF DUTY · OCCASION). 정적 카드 구성 (개발 공수 최소).",
   body:
-  sec("1","인트로 비주얼","M1 VISUAL", hero(520,"오늘은 어떤 하루인가요?","TODAY'S EDIT · 26 S/S","키비주얼 (컨셉 영상)"))+
-  sec("2","TODAY'S EDIT","M2 CARD(콘텐츠형)", cards(3,[["WORK — 일하는 순간","셋업 · 셔츠 · 슬랙스 / 남성 · 여성 진입"],["OFF DUTY — 일 밖의 순간","니트 · 데님 · 스니커즈 / 남성 · 여성 진입"],["OCCASION — 특별한 순간","포멀 셋업 · 원피스 / 남성 · 여성 진입"]],380,"룩북 이미지"))+
+  sec("1","인트로 비주얼","M1 VISUAL", hero(520,"오늘은 어떤 하루인가요?","TODAY'S EDIT · 27 S/S","키비주얼 (컨셉 영상)"))+
+  sec("2","TODAY'S EDIT","M2 CARD(콘텐츠형)", cards(3,[["WORK — 일하는 순간","셋업 · 셔츠 · 슬랙스　남성/여성 →"],["OFF DUTY — 일 밖의 순간","니트 · 데님 · 스니커즈　남성/여성 →"],["OCCASION — 특별한 순간","포멀 셋업 · 원피스　남성/여성 →"]],380,"룩북 이미지"))+
   sec("3","스타일 가이드","M2 CARD(콘텐츠형)", cards(3,[["출근룩 일주일","스타일링"],["미팅룩 셋업 가이드","스타일링"],["오프듀티 코디","스타일링"]],220,"매거진 이미지"))+
   sec("4","남성 / 여성","M1 VISUAL", split("남성 TODAY'S EDIT →\n룩북 이미지","여성 TODAY'S EDIT →\n룩북 이미지",280))+
   foot
@@ -217,7 +217,7 @@ P.WORKDAY = {url:"/todays-edit",lede:"브랜드 컨셉 허브 TODAY'S EDIT — �
 /* 템플릿 T-HUB — 성별 허브 (남성/여성 공용 1템플릿 2적용, v4 구성 유지) */
 P.MEN = {url:"/men",lede:"남성 스타일 허브 (v4 구성 유지). 여성과 공용 템플릿 1종.",
   body:
-  sec("1","메인 비주얼","M1 VISUAL",hero(420,"하루를 안정적으로 완성하는 출근룩","남성 · 정해인"))+
+  sec("1","메인 비주얼","M1 VISUAL",hero(420,"군더더기 없이 완성되는 출근룩","남성 · 정해인"))+
   sec("2","하위 메뉴","M3 CHIPS",`<div class="subnav"><div class="snrow"><span class="snl">둘러보기</span>${navChips([["TODAY'S EDIT","goSectionLike('EDIT')"],["룩북","goSectionLike('룩북')"],["스타일 가이드","show('BRAND')"]])}</div><div class="snrow"><span class="snl">카테고리</span>${catChips(["전체","세일","신상품","베스트","의류","액세서리","TODAY'S EDIT"])}</div></div>`)+
   sec("3","남성 TODAY'S EDIT","M2 CARD(콘텐츠형)", grid(3,["WORK — 일하는 순간","OFF DUTY — 일 밖의 순간","OCCASION — 특별한 순간"],200,"상황 썸네일"))+
   sec("4","에센셜","M2 CARD(상품형)", cards(4,[["자켓","₩ 00,000"],["셔츠","₩ 00,000"],["니트","₩ 00,000"],["팬츠","₩ 00,000"]],240,"상품 썸네일"))+
@@ -228,11 +228,11 @@ P.MEN = {url:"/men",lede:"남성 스타일 허브 (v4 구성 유지). 여성과 
 
 P.WOMEN = {url:"/women",lede:"여성 스타일 허브 (v4 구성 유지). 남성과 공용 템플릿 1종.",
   body:
-  sec("1","메인 비주얼","M1 VISUAL",hero(420,"일하는 하루를 감각적으로","여성 · 원지안"))+
+  sec("1","메인 비주얼","M1 VISUAL",hero(420,"일하는 하루에도, 나다운 감각","여성 · 원지안"))+
   sec("2","하위 메뉴","M3 CHIPS",`<div class="subnav"><div class="snrow"><span class="snl">둘러보기</span>${navChips([["TODAY'S EDIT","goSectionLike('EDIT')"],["룩북","goSectionLike('룩북')"],["스타일 가이드","show('BRAND')"]])}</div><div class="snrow"><span class="snl">카테고리</span>${catChips(["전체","세일","신상품","베스트","의류","액세서리","TODAY'S EDIT"])}</div></div>`)+
   sec("3","여성 TODAY'S EDIT","M2 CARD(콘텐츠형)", grid(3,["WORK — 일하는 순간","OFF DUTY — 일 밖의 순간","OCCASION — 특별한 순간"],200,"상황 썸네일"))+
   sec("4","무드 / 실루엣","M2 CARD(콘텐츠형)", grid(4,["미니멀","소프트","모던","캐주얼"],200,"무드 이미지"))+
-  sec("5","룩북","M2 CARD(콘텐츠형)", cards(3,[["룩 01","오피스 무드"],["룩 02","미팅 룩"],["룩 03","데일리"]],320,"룩북 이미지"))+
+  sec("5","룩북","M2 CARD(콘텐츠형)", cards(3,[["룩 01","오피스 무드"],["룩 02","미팅룩"],["룩 03","데일리"]],320,"룩북 이미지"))+
   sec("6","여성 상품","M4 LIST", `<div class="filterzone"><div class="fbar fdrop">`+fd("카테고리",fdItems(["전체","의류","액세서리","TODAY'S EDIT"],true,"cat",true))+fd("구분",fdItems(["전체","세일","신상품","베스트"],true,"tag",true))+fd("정렬: 추천순",fdItems(["추천순","신상품순","인기순","리뷰순","낮은가격순"],false,"",true))+fd("무드",fdItems(["미니멀","소프트","모던","캐주얼"],true,"mood",false))+`</div><div class="afilter"><span class="cnt">총 120개</span><div class="achips"></div><span class="clr" onclick="clearFilters(this)">전체 해제</span></div></div>`+cards(4,Array.from({length:12},()=>["상품명","₩ 00,000"]),300,"상품 썸네일")+`<div class="pgn"><span class="a">1</span><span>2</span><span>3</span><span>4</span><span>→</span></div>`)+
   foot
 };
@@ -240,9 +240,9 @@ P.WOMEN = {url:"/women",lede:"여성 스타일 허브 (v4 구성 유지). 남성
 /* 템플릿 T-JOURNAL — 저널 (브랜드 소개 흡수, 메뉴 3→2) */
 P.BRAND = {url:"/journal  ·  아티클 상세 = /journal/{id}",lede:"저널 — 브랜드 소개(필로소피·라인업)를 흡수한 브랜드 콘텐츠 허브. 상단 소개(정적) + 하단 아티클(캠페인·룩북·매거진, CMS).",
   body:
-  sec("1","브랜드 필로소피","M1 VISUAL", hero(500,"직장인의 하루를 설계하는 브랜드","MINDBRIDGE","키비주얼 (브랜드 영상)"))+
-  sec("2","브랜드 메시지","TXT 스타일", stmt("“입는 사람의 하루가 더 단정하고 편안하도록.”")+`<p class="lead">마인드브릿지는 일하는 사람의 하루를 위해 옷을 설계합니다. 유행을 좇기보다 오래 입어도 편안하고 단정한 기본을 제안합니다.</p>`)+
-  sec("3","라인업","M2 CARD(콘텐츠형)", cards(5,[["꾸띄르","포멀 · 정장 — 격식의 기준"],["커먼","데일리 베이직 — 매일의 기본"],["스마트","비즈 캐주얼 — 정장과 캐주얼 사이"],["유스","영 캐주얼 — 가볍고 경쾌하게"],["FOW","캡슐 라인 (설명 확인 필요)"]],260,"라인 키비주얼")+`<div class="bar" style="margin-top:14px">매장 찾기 — 통합몰 매장찾기로 연결 (새 창) ↗</div>`)+
+  sec("1","브랜드 필로소피","M1 VISUAL", hero(500,"일하는 사람의 하루를 설계하다","MINDBRIDGE","키비주얼 (브랜드 영상)"))+
+  sec("2","브랜드 메시지","TXT 스타일", stmt("“일과 일상, 그 사이의 옷”")+`<p class="lead">출근과 퇴근, 주중과 주말의 경계가 흐려진 시대. 마인드브릿지는 어느 순간에 두어도 자연스러운 옷으로 하루의 흐름을 잇습니다. 유행보다, 매일 손이 가는 기본에 집중합니다.</p>`)+
+  sec("3","라인업","M2 CARD(콘텐츠형)", cards(5,[["꾸띄르 COUTURE","고감도 디자인·소재 — 스타일을 만드는 옷"],["커먼 COMMON","프리미엄 에센셜 — 품격 있는 기본"],["스마트 SMART","데일리 라인 — 매일 편하게 입는 옷"],["유스 YOUTH","모던 스트리트 — 나를 드러내는 옷"],["F.O.W","테크 라이프웨어 캡슐 — 일하는 기능의 옷"]],260,"라인 키비주얼")+`<div class="bar" style="margin-top:14px">매장 찾기 — 통합몰 매장찾기로 연결 (새 창) ↗</div>`)+
   sec("4","콘텐츠 분류","M3 CHIPS", chips(["전체","컬렉션","매거진","에디토리얼","시즌 비하인드","스타일링"],0))+
   sec("5","아티클 리스트","M2 CARD(콘텐츠형)", cards(3,[["시즌 화보","컬렉션 · 정해인 · 원지안"],["시즌 룩북 · 캡슐 콜라보","컬렉션"],["시즌 에디토리얼","에디토리얼"],["시즌 비하인드","시즌 비하인드"],["출근룩 일주일","스타일링"],["뉴 워커 인터뷰","매거진"]],260,"콘텐츠 이미지"))+
   sec("6","아티클 상세 (공용 템플릿)","M1+TXT+M2", ph(420,imlTag("아티클 대형 비주얼 (이미지/영상)"))+`<div style="padding:18px 2px 24px;max-width:780px"><div style="font-size:18px;font-weight:700;margin-bottom:8px">아티클 타이틀</div><p style="font-size:13px;color:var(--mut);line-height:1.85">본문 텍스트 영역 — 캠페인·룩북·매거진 공용. 상품 태깅(Shop the Look) 없이 하단 관련 상품 카드로 연결.</p></div>`+cards(4,[["관련 상품 01","₩ 00,000"],["관련 상품 02","₩ 00,000"],["관련 상품 03","₩ 00,000"],["관련 상품 04","₩ 00,000"]],240,"상품 썸네일"))+
