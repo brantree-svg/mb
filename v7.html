@@ -98,6 +98,8 @@
   .demo:hover{transform:translateY(-2px);}
   .demo .im{position:relative;}
   .dbadge{position:absolute;top:10px;right:10px;z-index:2;font-size:9px;font-weight:700;letter-spacing:.05em;background:#3b6fd4;color:#fff;border-radius:4px;padding:3px 7px;}
+  .backbar{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--mut);border:1px solid var(--line);border-radius:20px;padding:9px 16px;cursor:pointer;margin:18px 0 4px;background:#fff;}
+  .backbar:hover{color:var(--ink);border-color:var(--ink);}
   .devnote{display:none;margin:0 0 12px;padding:9px 13px;background:#eef3fb;border:1px solid #d3e0f5;border-left:3px solid #3b6fd4;border-radius:8px;font-size:11.5px;color:#2f4a7a;line-height:1.6;}
   .devnote b{color:#1f3a6e;}
   .dtag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;background:#3b6fd4;color:#fff;border-radius:4px;padding:2px 6px;margin-right:8px;vertical-align:1px;}
@@ -158,7 +160,7 @@
    TXT         공통 텍스트 스타일(스테이트먼트+리드) — 모듈 아님, 타이포 스타일 */
 
 const TABS = ["HOME","MEN","WOMEN","WORKDAY","BRAND","OUTLET"];
-const LABEL = {HOME:"홈",MEN:"남성",WOMEN:"여성",WORKDAY:"TODAY'S EDIT",BRAND:"저널",OUTLET:"아울렛",STORE:"매장찾기",SCOPE:"산출 범위"};
+const LABEL = {HOME:"홈",MEN:"남성",WOMEN:"여성",WORKDAY:"TODAY'S EDIT",BRAND:"저널",OUTLET:"아울렛",STORE:"매장찾기",SCOPE:"산출 범위",LANDING:"랜딩 샘플"};
 
 const ph = (h,label="") => `<div class="ph" style="height:${h}px">${label}</div>`;
 const ICO_IMG = '<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L4 20"></path></svg>';
@@ -197,10 +199,19 @@ function gnb(active){
 const foot = `<div class="foot">푸터 · 통합몰(TBH SHOP) 공통 — 회사소개 · 약관 · 개인정보 · 고객센터 · 매장찾기 · SNS</div>`;
 
 function demoCards(cols, items, h, imgl, handler){return `<div class="g g${cols}">`+items.map(([a,b])=>`<div class="card demo" onclick="${handler.replace("__A__",a)}"><div class="im" style="height:${h}px"><span class="dbadge">클릭 예시</span>${imlTag(imgl)}</div><div class="c"><b>${a}</b>${b}</div></div>`).join("")+`</div>`;}
-function findSec(kw){const ss=[...document.querySelectorAll("#app section")];return ss.find(x=>{const t=x.querySelector(".t");return t&&t.textContent.indexOf(kw)>-1;});}
-function goStories(cat){if(cat==="매장"){show("STORE");return;}show("BRAND");setTimeout(()=>{const cs=findSec("콘텐츠 분류");if(cs)cs.querySelectorAll(".chip").forEach(c=>c.classList.toggle("a",c.textContent.trim()===cat));const al=findSec("아티클 리스트");if(al)al.scrollIntoView({behavior:"smooth",block:"start"});},450);}
-function goGuide(){show("BRAND");setTimeout(()=>{const d=findSec("아티클 상세");if(d)d.scrollIntoView({behavior:"smooth",block:"start"});},450);}
-function goEdit(){show("MEN");setTimeout(()=>{const t=findSec("남성 상품");if(!t)return;t.querySelectorAll(".fdp [data-grp=\"cat\"]").forEach(c=>c.classList.toggle("a",c.dataset.cat==="TODAY'S EDIT"));if(typeof refreshChips==="function")refreshChips(t);t.scrollIntoView({behavior:"smooth",block:"start"});},450);}
+let PREV="HOME";
+function goStories(cat){if(cat==="매장"){show("STORE");return;}goLand(cat);}
+function goLand(t){
+  const on=document.querySelector(".tabs button.on");PREV=on?on.dataset.k:"HOME";
+  P.LANDING={url:"/landing/{id} · 클릭 랜딩 샘플",
+    lede:"클릭 랜딩 샘플 — 콘텐츠 헤더 + 관련 상품 리스트형 공용 템플릿. 실제 구축 시 클릭한 콘텐츠에 맞는 상품 세트 노출.",
+    body:
+    `<div class="backbar" onclick="show(PREV)">← 이전 화면으로</div>`+
+    sec("1",t,"랜딩 샘플", hero(380,t,"LANDING SAMPLE","콘텐츠 키비주얼"))+
+    sec("2","관련 상품","M4 LIST", `<div class="bar">필터 — 카테고리 · 구분<span class="r">정렬 — 추천순</span></div>`+cards(4,Array.from({length:8},()=>["상품명","₩ 00,000"]),280,"상품 썸네일")+`<div class="pgn"><span class="a">1</span><span>2</span><span>→</span></div>`)+
+    foot};
+  show("LANDING");
+}
 
 const P = {};
 
@@ -219,8 +230,8 @@ P.HOME = {url:"/",lede:"비주얼 중심 메인. 팀 의견 반영: 브랜드 �
 P.WORKDAY = {url:"/todays-edit",lede:"브랜드 컨셉 허브 TODAY'S EDIT — 하루의 순간별 제안(WORK · OFF DUTY · OCCASION). 정적 카드 구성 (개발 공수 최소).",
   body:
   sec("1","인트로 비주얼","M1 VISUAL", hero(520,"오늘은 어떤 하루인가요?","TODAY'S EDIT · 27 S/S","키비주얼 (컨셉 영상)"))+
-  sec("2","TODAY'S EDIT","M2 CARD(콘텐츠형) · 클릭 예시", demoCards(3,[["WORK — 일하는 순간","셋업 · 셔츠 · 슬랙스"],["OFF DUTY — 일 밖의 순간","니트 · 데님 · 스니커즈"],["OCCASION — 특별한 순간","포멀 셋업 · 원피스"]],380,"룩북 이미지","goEdit()"))+
-  sec("3","스타일 가이드","M2 CARD(콘텐츠형) · 클릭 예시", demoCards(3,[["출근룩 일주일","스타일링"],["미팅룩 셋업 가이드","스타일링"],["오프듀티 코디","스타일링"]],220,"매거진 이미지","goGuide()"))+
+  sec("2","TODAY'S EDIT","M2 CARD(콘텐츠형) · 클릭 예시", demoCards(3,[["WORK — 일하는 순간","셋업 · 셔츠 · 슬랙스"],["OFF DUTY — 일 밖의 순간","니트 · 데님 · 스니커즈"],["OCCASION — 특별한 순간","포멀 셋업 · 원피스"]],380,"룩북 이미지","goLand('__A__')"))+
+  sec("3","스타일 가이드","M2 CARD(콘텐츠형) · 클릭 예시", demoCards(3,[["출근룩 일주일","스타일링"],["미팅룩 셋업 가이드","스타일링"],["오프듀티 코디","스타일링"]],220,"매거진 이미지","goLand('__A__')"))+
   sec("4","남성 / 여성","M1 VISUAL", split("남성 TODAY'S EDIT →\n룩북 이미지","여성 TODAY'S EDIT →\n룩북 이미지",280))+
   foot
 };
@@ -316,8 +327,8 @@ sec("4","어드민(CMS) 범위",null,`<div class="bar">관리 대상 3종 한정
 };
 
 const ANN = {
-HOME:["<b>메인 비주얼</b> · M1 VISUAL · 이미지/영상 · CMS 배너 · 기획전·쿠폰·팝업성 프로모션 진입 처리","<b>브랜드 무드·소개</b> · TXT + M1 · 소개 카피(팀안, ARKET형) + 알아보기 링크 → 저널 · 정적","<b>상품 큐레이션</b> · M5 CURATION · 유일 커스텀(캐러셀 자동전환+퀵샵) · 홈 1곳만, 퀵샵은 통합몰 컴포넌트 재사용 · 상품 API","<b>TODAY'S EDIT 배너</b> · M1 VISUAL → /todays-edit","<b>STORIES</b> · M2 CARD 4링크 · 클릭 예시 — 저널 분류 프리셋 랜딩 / 매장 → 외부 연결 안내"],
-WORKDAY:["<b>인트로</b> · M1 VISUAL(영상) · CMS","<b>TODAY'S EDIT</b> · M2 CARD 3구간 · 클릭 예시 — 남성 상품 리스트 TODAY'S EDIT 프리셋(연관 상품 리스트형) 랜딩","<b>스타일 가이드</b> · M2 CARD · 클릭 예시 — 저널 아티클 상세(연관 상품 리스트형) 랜딩","<b>남성/여성</b> · M1 VISUAL → /men · /women"],
+HOME:["<b>메인 비주얼</b> · M1 VISUAL · 이미지/영상 · CMS 배너 · 기획전·쿠폰·팝업성 프로모션 진입 처리","<b>브랜드 무드·소개</b> · TXT + M1 · 소개 카피(팀안, ARKET형) + 알아보기 링크 → 저널 · 정적","<b>상품 큐레이션</b> · M5 CURATION · 유일 커스텀(캐러셀 자동전환+퀵샵) · 홈 1곳만, 퀵샵은 통합몰 컴포넌트 재사용 · 상품 API","<b>TODAY'S EDIT 배너</b> · M1 VISUAL → /todays-edit","<b>STORIES</b> · M2 CARD 4링크 · 클릭 예시 — 전용 랜딩 샘플(관련 상품 리스트형) 오픈 / 매장 → 외부 연결 안내"],
+WORKDAY:["<b>인트로</b> · M1 VISUAL(영상) · CMS","<b>TODAY'S EDIT</b> · M2 CARD 3구간 · 클릭 예시 — 전용 랜딩 샘플(관련 상품 리스트형) 오픈","<b>스타일 가이드</b> · M2 CARD · 클릭 예시 — 전용 랜딩 샘플(관련 상품 리스트형) 오픈","<b>남성/여성</b> · M1 VISUAL → /men · /women"],
 MEN:["<b>메인 비주얼</b> · M1 VISUAL · CMS","<b>하위 메뉴</b> · M3 CHIPS · 앵커 스크롤 + 카테고리(세일·신상·베스트·의류·액세서리·TODAY'S EDIT) → 리스트 필터 연동","<b>남성 TODAY'S EDIT</b> · M2 CARD 3구간 그리드 → 리스트 프리셋","<b>에센셜</b> · M2 CARD(상품형) 추천 큐레이션 · 상품 API","<b>룩북</b> · M2 CARD → 저널 아티클 상세","<b>남성 상품</b> · M4 LIST(공용 1종) · 필터: 카테고리(의류/액세서리/TODAY'S EDIT)+구분(세일/신상/베스트)+정렬 · 상품 API"],
 WOMEN:["<b>메인 비주얼</b> · M1 VISUAL · CMS","<b>하위 메뉴</b> · M3 CHIPS · 앵커 스크롤 + 카테고리 → 리스트 필터 연동","<b>여성 TODAY'S EDIT</b> · M2 CARD 3구간 그리드 → 리스트 프리셋","<b>무드/실루엣</b> · M2 CARD · 무드 필터 진입","<b>룩북</b> · M2 CARD → 저널 아티클 상세","<b>여성 상품</b> · M4 LIST(공용 1종) + 구분(세일/신상/베스트)·무드 필터·리뷰순 · 상품 API"],
 BRAND:["<b>필로소피</b> · M1 VISUAL · 정적","<b>메시지</b> · TXT 스타일 · 정적","<b>라인업</b> · M2 CARD 5카드 · 정적 + 매장찾기 링크(통합몰↗)","<b>저널 분류</b> · M3 CHIPS · 컬렉션·매거진·에디토리얼·시즌 비하인드·스타일링 (컬렉션 메뉴는 분류로 흡수)","<b>아티클 리스트</b> · M2 CARD · 단일 아티클 타입 · CMS","<b>아티클 상세</b> · M1+TXT+M2 공용 1템플릿 · 상품 태깅 없이 관련 상품 카드 링크"],
