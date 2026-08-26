@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MIND BRIDGE — A안 모바일</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+html,body{margin:0;padding:0;height:100%;background:#f2f2f2;font-family:Pretendard,-apple-system,sans-serif;color:#000;letter-spacing:0}
+*{box-sizing:border-box}
+a{text-decoration:none}
+.bar{position:fixed;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:#fff;border-bottom:.5px solid #e5e5e5;z-index:10}
+.bar .t{font-size:13px;font-weight:700;color:#000}
+.bar .s{font-size:11px;color:#8a8a8a;margin-left:12px}
+.nav{display:flex;gap:20px;font-size:11px;font-weight:700}
+.nav a{color:#8a8a8a}
+.nav a:hover{color:#000}
+.nav .on{color:#000}
+.stage{height:100%;padding-top:52px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.sc{transform-origin:center center}
+.ph{width:393px;height:852px;background:#111;border-radius:54px;padding:11px;box-shadow:0 24px 60px rgba(0,0,0,.26)}
+.scr{position:relative;width:100%;height:100%;background:#fff;border-radius:44px;overflow:hidden}
+.scr iframe{width:100%;height:100%;border:0;display:block}
+.notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:118px;height:34px;background:#111;border-radius:20px;z-index:3;pointer-events:none}
+.home{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:138px;height:5px;background:#111;opacity:.25;border-radius:3px;z-index:3;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="bar">
+  <span><span class="t">A안</span><span class="s">정보 위계 중심 · 393px</span></span>
+  <span class="nav"><a href="./v1.html">PC</a><span class="on">MOBILE</span><a href="./index.html">목록</a></span>
+</div>
+<div class="stage"><div class="sc" id="sc">
+  <div class="ph"><div class="scr">
+    <div class="notch"></div>
+    <iframe src="./v1.html" title="A안 모바일 미리보기"></iframe>
+    <div class="home"></div>
+  </div></div>
+</div></div>
+<script>
+(function(){var e=document.getElementById("sc");function f(){var s=Math.min((window.innerHeight-52-48)/874,(window.innerWidth-48)/415,1);e.style.transform="scale("+s+")"}f();window.addEventListener("resize",f)})();
+</script>
+</body>
+</html>
