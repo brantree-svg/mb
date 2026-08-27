@@ -36,6 +36,20 @@ a{text-decoration:none}
   </div></div>
 </div></div>
 <script>
+(function(){
+  var fr=document.querySelector("iframe");
+  function hidenav(){
+    try{
+      var d=fr.contentDocument; if(!d||!d.head) return;
+      if(d.getElementById("__nofloat")) return;
+      var st=d.createElement("style"); st.id="__nofloat";
+      st.textContent="#__dcnav{display:none!important}";
+      d.head.appendChild(st);
+    }catch(e){}
+  }
+  fr.addEventListener("load",function(){hidenav();setTimeout(hidenav,600);setTimeout(hidenav,2000);});
+  hidenav(); setTimeout(hidenav,1200); setTimeout(hidenav,3000);
+})();
 (function(){var e=document.getElementById("sc");function f(){var s=Math.min((window.innerHeight-52-48)/874,(window.innerWidth-48)/415,1);e.style.transform="scale("+s+")"}f();window.addEventListener("resize",f)})();
 </script>
 </body>
